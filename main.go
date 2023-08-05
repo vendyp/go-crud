@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crudapp/entities"
 	"fmt"
 	"net/http"
 
@@ -8,11 +9,6 @@ import (
 	"gorm.io/driver/sqlserver"
 	"gorm.io/gorm"
 )
-
-type User struct {
-	gorm.Model
-	Name string `gorm:"size:100"`
-}
 
 func main() {
 	fmt.Println("Running web server on port 5000")
@@ -25,8 +21,8 @@ func main() {
 	}
 
 	//migrate table user
-	db.AutoMigrate(&User{})
-	//db.AutoMigrate(&Product{}) // error
+	db.AutoMigrate(&entities.Product{})
+	db.AutoMigrate(&entities.ProductCategory{})
 
 	e := echo.New()
 
